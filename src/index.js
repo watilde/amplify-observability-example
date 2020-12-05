@@ -21,5 +21,6 @@ ReactDOM.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-// To track error and report it to CloudWatch through Kinesis Stream
+// To capture errors and report it to CloudWatch through Kinesis Stream
+// Learn more: https://docs.amplify.aws/lib/analytics/streaming/q/platform/js#installation-and-configuration
 window.onerror = monitorErrors;
