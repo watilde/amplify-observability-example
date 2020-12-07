@@ -37,7 +37,8 @@ const monitorErrors = (msg, file, line, col, error) => {
       ...parser.getResult()
     };
     Analytics.record({
-      data,
+      data: data,
+      streamName: 'errKinesis-dev'
     }, 'AWSKinesis');
   });
 };
