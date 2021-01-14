@@ -7,7 +7,7 @@ function App() {
   };
   const unhandledRejection = () => {
     new Promise(() => {
-      throw Error('Hello!')
+      throw new Error('Hello!')
     })
   };
   return (
