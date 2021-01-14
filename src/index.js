@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import monitorErrors from './monitorErrors';
+import monitorWebVitals from './monitorWebVitals';
 
 Amplify.configure(awsconfig);
 
@@ -19,7 +20,7 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals(monitorWebVitals);
 
 // To capture errors and report it to CloudWatch through Kinesis Stream
 // Learn more: https://docs.amplify.aws/lib/analytics/streaming/q/platform/js#installation-and-configuration
