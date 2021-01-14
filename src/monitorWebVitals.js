@@ -16,7 +16,7 @@ Analytics.addPluggable(new AWSKinesisProvider());
 
 const parser = new UAParser();
 
-const monitorErrors = (metric) => {
+const monitorWebVitals = (metric) => {
   const data = {
     name: metric.name,
     value: metric.value,
@@ -29,4 +29,4 @@ const monitorErrors = (metric) => {
   }, 'AWSKinesis');
 };
 
-export default monitorErrors;
+export default monitorWebVitals;
