@@ -4,12 +4,18 @@ import './App.css';
 function App() {
   const throwError = () => {
     throw new Error('Hello!')
-  }
+  };
+  const unhandledRejection = () => {
+    new Promise(() => {
+      throw new Error('Hello!')
+    })
+  };
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <button onClick={() => {throwError()}}>Error</button>
+        <button onClick={() => {unhandledRejection()}}>Unhandled rejection</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
