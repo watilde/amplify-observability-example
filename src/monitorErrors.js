@@ -1,19 +1,11 @@
 import * as StackTrace from 'stacktrace-js';
 import UAParser from 'ua-parser-js';
-import { Analytics, AWSKinesisProvider } from 'aws-amplify';
+import Amplify, { Analytics } from 'aws-amplify';
+import flatten from 'flat';
+
 import awsconfig from './aws-exports';
 
-Analytics.configure({
-  AWSKinesis: {
-      region: awsconfig.aws_project_region,
-      bufferSize: 1000,
-      flushSize: 100,
-      flushInterval: 5000, 
-      resendLimit: 5
-  } 
-});
-
-Analytics.addPluggable(new AWSKinesisProvider());
+Amplify.configure(awsconfig);
 
 const parser = new UAParser();
 
@@ -29,17 +21,20 @@ const monitorErrors = (msg, file, line, col, error) => {
   const stack = StackTrace.fromError(error).then(callback).catch(errback);
   stack.then((stringifiedStack) => {
     const data = {
+      url: window.location.href,
       msg: msg,
-      url: file,
-      line: line,
-      column: col || null,
-      stack: stringifiedStack,
-      ...parser.getResult()
+      file: file,
+      line: String(line),
+      column: String(col) || "",
+      stack: stringifiedStack || "",
+      ...flatten(parser.getResult())
     };
     Analytics.record({
-      data: data,
-      streamName: 'errors'
-    }, 'AWSKinesis');
+      name: 'ERROR',
+      attributes: {
+        ...data
+      }
+    });
   });
 };
 
