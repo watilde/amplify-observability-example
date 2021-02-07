@@ -25,7 +25,7 @@ const monitorWebVitals = (metric) => {
   };
   Analytics.record({
     data: data,
-    streamName: 'web-vitals'
+    streamName: 'amplifyobservabilityKinesis-dev'
   }, 'AWSKinesis');
 };
 

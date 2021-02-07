@@ -29,8 +29,10 @@ const monitorErrors = (msg, file, line, col, error) => {
   const stack = StackTrace.fromError(error).then(callback).catch(errback);
   stack.then((stringifiedStack) => {
     const data = {
+      name: "ERROR",
       msg: msg,
-      url: file,
+      url: window.location.href,
+      file: file,
       line: line,
       column: col || null,
       stack: stringifiedStack,
@@ -38,7 +40,7 @@ const monitorErrors = (msg, file, line, col, error) => {
     };
     Analytics.record({
       data: data,
-      streamName: 'errors'
+      streamName: 'amplifyobservabilityKinesis-dev'
     }, 'AWSKinesis');
   });
 };
