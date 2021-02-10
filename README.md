@@ -1,4 +1,4 @@
-# Error tracking test
+# Error and Web Vitals tracking with Amplify
 
 ## Getting started
 
